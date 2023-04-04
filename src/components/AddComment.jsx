@@ -27,11 +27,11 @@ const [commentObj, setCommentObj] = useState({comment: "", rate: "1", elementId:
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDJhZThlNTY4MzQzMTAwMTRkZWE3ZWYiLCJpYXQiOjE2ODA1MzM3MzMsImV4cCI6MTY4MTc0MzMzM30.BybWrL_zO0q23jXsrG8pA-yPWXt9QYBf4zZcRNL920U"
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDJhY2Q2MjY4MzQzMTAwMTRkZWE3ODUiLCJpYXQiOjE2ODA1MjY2OTEsImV4cCI6MTY4MTczNjI5MX0.vy9fmsltjGETuelig9L2wa8VI9MS2Gu7Cs5mg89JqKw"
         }
       });
       if (response.ok) {
-        // alert("Commento inviato");
+        alert("Commento inviato");
 
         // ricrea la lista di commenti nel livello superiore (il padre: CommentArea)
         // attraverso la referenza della funzione fetchComments passata come prop a questo componente
@@ -64,7 +64,8 @@ const [commentObj, setCommentObj] = useState({comment: "", rate: "1", elementId:
           type="text"
           placeholder="Inserisci il commento"
           value={commentObj.comment}
-          onChange={e => setCommentObj(...commentObj, {comment: e.target.value})}
+          onChange={e => setCommentObj(commentObj => ({...commentObj, comment: e.target.value}))}
+          // onChange={e => setCommentObj(...commentObj, {comment: e.target.value})} => ERRATA!!!
           // onChange={e => this.setState({ commentObj: { ...this.state.commentObj, comment: e.target.value } })}
         />
       </Form.Group>
@@ -72,7 +73,8 @@ const [commentObj, setCommentObj] = useState({comment: "", rate: "1", elementId:
         <Form.Label>Voto</Form.Label>
         <Form.Select
           value={commentObj.rate}
-          onChange={e => setCommentObj(...commentObj, {rate: e.target.value})}
+          onChange={e => setCommentObj(commentObj => ({...commentObj, rate: e.target.value}))}
+          // onChange={e => setCommentObj(...commentObj, {rate: e.target.value})} => ERRATA!!!
           // onChange={e => {
           //   this.setState({
           //     commentObj: {
